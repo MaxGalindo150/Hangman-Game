@@ -7,7 +7,9 @@ def run():
     j = random.randint(0,170)
     for i, words in enumerate(words):
         if i == j:
-            print(words)
+            word = words
+    l = len(word)
+    print(l*" _ ")
 
 if __name__ == '__main__':
     run()
