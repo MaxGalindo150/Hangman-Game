@@ -11,27 +11,36 @@ def size(): #Obtain the number of letters of just a word
     j = random.randint(0,170)
     s = len(words[j]) - 1
     return s, words[j]
-      
+
+def start(): #Welcome to hangman
+    return print("\nGuess the word!\n")       
 
 def run():
      s, word = size()
-     print("\nGuess the word!\n")
+     
+     start()
      
      unders = s*"_" + "\n"
      print(unders)
      
      letters = list(unders)
-
-     while unders != word:
+     k = 0
+     while k < 6:
+        k = k + 1
         l = input("\nEnter a letter: ")
         for i in range(0,s):
             if l == word[i]:
                 letters[i] = l         
         os.system("clear")
         unders = "".join(letters)
-        print("\nGuess the word!\n")
+        start()
         print(unders.upper())
-     
+        if unders == word:
+            break
+     if unders == word:
+        print("YES! the word was " + word.upper() + " ;)")       
+     else:
+        print("UPS! You lose :(")
         
      
 if __name__ == '__main__':
