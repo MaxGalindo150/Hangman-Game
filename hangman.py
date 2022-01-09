@@ -1,5 +1,6 @@
 import random
 import os
+from figures import HANGMANPICS
 
 def read_words(): #read data
     with open("./data.txt", "r", encoding = "utf-8") as d:
@@ -13,11 +14,19 @@ def size(): #Obtain the number of letters of just a word
     return s, words[j]
 
 def start(): #Welcome to hangman
-    return print("\nGuess the word!\n")       
+    return print("\nGuess the word!\n")
+
+def check(k,letter,l_list):
+    if letter in l_list:
+        k = k
+    else:
+        k = k+1
+    return k       
 
 def run():
      s, word = size()
      
+     print(HANGMANPICS[0])
      start()
      
      unders = s*"_" + "\n"
@@ -25,18 +34,23 @@ def run():
      
      letters = list(unders)
      k = 0
+
      while k < 6:
-        k = k + 1
-        l = input("\nEnter a letter: ")
-        for i in range(0,s):
-            if l == word[i]:
-                letters[i] = l         
-        os.system("clear")
-        unders = "".join(letters)
-        start()
-        print(unders.upper())
-        if unders == word:
-            break
+            l = input("\nEnter a letter: ")
+            for i in range(0,s):
+                if l == word[i]:
+                  letters[i] = l 
+            if l in letters:
+                k = k
+            else:
+                k = k + 1           
+            os.system("clear")
+            unders = "".join(letters)
+            print(HANGMANPICS[k])
+            start()
+            print(unders.upper())
+            if unders == word:
+                break
      if unders == word:
         print("YES! the word was " + word.upper() + " ;)")       
      else:
