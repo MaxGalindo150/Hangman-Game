@@ -16,13 +16,6 @@ def size(): #Obtain the number of letters of just a word
 def start(): #Welcome to hangman
     return print("\nGuess the word!\n")
 
-def check(k,letter,l_list):
-    if letter in l_list:
-        k = k
-    else:
-        k = k+1
-    return k       
-
 def run():
      s, word = size()
      
@@ -54,7 +47,7 @@ def run():
      if unders == word:
         print("YES! the word was " + word.upper() + " ;)")       
      else:
-        print("UPS! You lose :(")
+        print("UPS! You lost :(")
         
      
 if __name__ == '__main__':
